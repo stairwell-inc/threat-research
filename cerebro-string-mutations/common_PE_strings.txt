@@ -1,0 +1,45 @@
+This program cannot be run in DOS mode
+This program must be run under Win32
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWX
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
+0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/
+KERNEL32.dll
+Kernel32.dll
+kernel32.dll
+msvcrt.dll
+VCRUNTIME140.dll
+IsDebuggerPresent
+RaiseException
+MultiByteToWideChar
+WideCharToMultiByte
+UnhandledExceptionFilter
+SetUnhandledExceptionFilter
+GetCurrentProcess
+TerminateProcess
+IsProcessorFeaturePresent
+QueryPerformanceCounter
+GetCurrentProcessId
+GetSystemTimeAsFileTime
+InitializeSListHead
+GetStartupInfoW
+GetModuleHandleW
+GetLastError
+HeapAlloc
+HeapFree
+GetProcessHeap
+GetCurrentThreadId
+VirtualQuery
+VirtualAlloc
+FreeLibrary
+GetProcAddress
+xml version='1.0' encoding='UTF-8' standalone='yes'
+<assembly xmlns='urn:schemas-microsoft-com:asm.v1' manifestVersion='1.0'>
+<trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">
+<security>
+<requestedPrivileges>
+<requestedExecutionLevel level='asInvoker' uiAccess='false' />
+Content-Type: application/octet-stream
+Content-Length: %
+Microsoft Base Cryptographic Provider v1.0
