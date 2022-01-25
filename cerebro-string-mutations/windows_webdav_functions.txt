@@ -1,0 +1,13 @@
+DavAddConnection
+PFNDAVAUTHCALLBACK
+DavCancelConnectionsToServer
+DavDeleteConnection
+DavFlushFile
+PFNDAVAUTHCALLBACK_FREECRED
+DavGetExtendedError
+DavGetHTTPFromUNCPath
+DavGetTheLockOwnerOfTheFile
+DavGetUNCFromHTTPPath
+DavInvalidateCache
+DavRegisterAuthCallback
+DavUnregisterAuthCallback

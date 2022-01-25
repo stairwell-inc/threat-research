@@ -2,9 +2,25 @@
 
 Scripts and lists to help you brute force YARA friendly string mutations.
 
-# Usage Example
+- Reference Blog: https://stairwell.com/news/hunting-with-weak-signals/
 
-Use the script take the list of newline separated strings and mutate those using the flipflop function and print them into YARA terms. You can jam these into YARA rules, or expand the script to print them out in different ways or forms that are most easily useful for you.
+## Mutations
+
+- flipflop - Flipping every two bytes, encoding used in many malware families including Nobelium's FLIPFLOP
+- stackpush - Meterpreter-style x86 stack strings, where four byte chunks are PUSH'd to the stack
+- fallchill - Custom string encoding routine used by Lazarus (aka HIDDEN COBRA) in FALLCHILL malware [[ref tweet](https://twitter.com/stvemillertime/status/1485990404948381698)]
+- reverse - Simple reverse strings
+
+## Lists
+
+We compiled a couple of lists of Windows DLL and function names by cherry picking subsets of the Windows API. 
+- Windows API index: https://docs.microsoft.com/en-us/windows/win32/apiindex/windows-api-list
+
+We recommend evaluating these, breaking them into sensible buckets (such as by their associated utility), and experimenting to find out which sets work well in rules. Add additional ones, or other file or function names that may not be listed here. 
+
+## Usage Example
+
+Use the script take the list of newline separated strings and mutate those using the flipflop function and print them into YARA terms. You can jam these into YARA rules, or expand the script to print them out in different ways or forms that are most easily useful for you. Have fun fiddling!
 
 ```
 

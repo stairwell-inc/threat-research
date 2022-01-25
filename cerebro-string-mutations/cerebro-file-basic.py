@@ -50,6 +50,23 @@ def make_reverse_strings(thing):
     except:
         print("Uh oh, something bad happened in reverse func.")
 
+def make_fallchill_strings(thing):
+    # Lifted from https://lifars.com/wp-content/uploads/2021/09/Lazarus.pdf
+    try:
+        if isinstance(thing,str):
+            s = ''
+            for i in range (0, len(thing)):
+                b = hex(ord(thing[i]))
+                b = int(b,16)
+                if (b > 0x61) and (b < 0x7a):
+                    c = int("0xdb",16) - b
+                    s = s + str(bytearray.fromhex(str(hex(c))[2:]).decode())
+                else:
+                    s = s + thing[i]
+            return(s)
+    except:       
+        print("Is that a real string? Something bad happened in fallchill func.")
+
 # Add additional custom mutation functions ^ do things like reverse strings in diff formats, camel case, custom b64, b62, etc etc. 
 
 
@@ -60,7 +77,11 @@ def assemble_output(clean_str,mut_type,mutated_str):
     if hextype in mut_type:
         print("\t$" + clean_str + mut_type + " = {" + mutated_str + "}")
     else: 
-        print("\t$" + clean_str + mut_type + " = \"" + mutated_str + "\" nocase")
+        #replace " with \"
+        yara_mutated_str1 = re.sub(r'\\',r'\\\\', mutated_str)
+        #replace \ with \\
+        yara_mutated_str2 = re.sub('"','\\"', yara_mutated_str1)
+        print("\t$" + clean_str + mut_type + " = \"" + yara_mutated_str2 + "\" nocase")
 
 def main_active(args = sys.argv[1:]):
     
@@ -71,7 +92,7 @@ def main_active(args = sys.argv[1:]):
     group.add_argument('-f','--file', type=argparse.FileType('r'), help='Single file to read.')
    
     #Mutation selection choices.
-    parser.add_argument('-m','--mut','--mutation', choices=['flipflop','stackpush','reverse'], type=str, required=True)
+    parser.add_argument('-m','--mut','--mutation', choices=['flipflop','stackpush','reverse','fallchill'], type=str, required=True)
 
     args = parser.parse_args(args)
 
@@ -103,6 +124,15 @@ def main_active(args = sys.argv[1:]):
                 for line in args.file:
                     in_string = line.strip()
                     mutated_str = make_reverse_strings(in_string)
+                    clean_str = re.sub('\W+','',line.strip())
+                    assemble_output(clean_str,mut_type,mutated_str)
+                    count +=1
+            elif mutation == "fallchill":
+                mut_type = "_fallchill"
+                count = 0
+                for line in args.file:
+                    in_string = line.strip()
+                    mutated_str = make_fallchill_strings(in_string)
                     clean_str = re.sub('\W+','',line.strip())
                     assemble_output(clean_str,mut_type,mutated_str)
                     count +=1
