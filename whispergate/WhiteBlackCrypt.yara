@@ -34,7 +34,7 @@ rule WhisperGate_WhiteBlackCrypt_extensions
         	 4F 44 42 00 2E 44 42 46 00 2E 44 42 00 2E 4D 44 42 00 2E 41 43 
         	 43 44 42 00 2E 53 51 4C 00 2E 53 51 4C 49 54 45 44 42 00}
     condition:
-        2 of them    
+        3 of them    
 }
 
 
@@ -56,20 +56,4 @@ rule WhisperGate_WhiteBlackCrypt_ransom
 		$ = "address of your bitcoin wallet."
     condition:
         3 of them    
-}
-
-
-
-rule WhisperGate_WhiteBlackCrypt_ransom_emails
-{
-    meta:
-        author= "Silas Cutler (silas@Stairwell.com)"
-        description = "Matches email addresses from note seen in WhiteBlackCrypt"
-        ref = "https://cip.gov.ua/ua/news/informaciya-shodo-imovirnoyi-provokaciyi"
-        version = "0.1"
-    strings:
-		$ = "Whiteblackgroup002@gmail.com"
-		$ = "Wbgroup022@gmail.com"
-    condition:
-        any of them    
 }
