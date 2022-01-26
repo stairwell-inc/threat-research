@@ -1,0 +1,16 @@
+CallNamedPipe
+ConnectNamedPipe
+CreateNamedPipe
+CreatePipe
+DisconnectNamedPipe
+GetNamedPipeClientComputerName
+GetNamedPipeClientProcessId
+GetNamedPipeClientSessionId
+GetNamedPipeHandleState
+GetNamedPipeInfo
+GetNamedPipeServerProcessId
+GetNamedPipeServerSessionId
+PeekNamedPipe
+SetNamedPipeHandleState
+TransactNamedPipe
+WaitNamedPipe
