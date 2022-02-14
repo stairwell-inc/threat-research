@@ -139,7 +139,7 @@ def main_active(args = sys.argv[1:]):
     group.add_argument('-s','--str', type=str, help='Single string to mutate.')
    
     # Mutation selection choices.
-    parser.add_argument('-m','--mut','--mutation', choices=['flipflop','reverse','stackpush','stackpushnull','stackpushdoublenull','fallchill','all'], type=str, required=True)
+    parser.add_argument('-m','--mut','--mutation', choices=['flipflop','reverse','stackpush','stackpushnull','stackpushdoublenull','hex','fallchill','all'], type=str, required=True)
 
     args = parser.parse_args(args)
 
@@ -152,6 +152,7 @@ def main_active(args = sys.argv[1:]):
             in_string = args.str
             mutation = args.mut
             if args.mut:
+                print("\n")
                 if mutation == "flipflop":
                     mut_type = "_flipflop"
                     mutated_str = make_flipflop_strings(in_string)
