@@ -96,7 +96,6 @@ def make_stackpush_nullterm(thing):
             thing_stackpush=str('h'+'h'.join(map(str,out)))
             index = thing_stackpush.find('h',1)
             final = thing_stackpush[:index] + "\\" + "x00" + thing_stackpush[index:]
-            # some how it is impossible to print a single backslash with the interactive interpreter
             return(final)
     except:
         print("Uh oh, something bad happened in stackpush_nullterm func.")
@@ -110,7 +109,6 @@ def make_stackpush_doublenullterm(thing):
             thing_stackpush=str('h'+'h'.join(map(str,out)))
             index = thing_stackpush.find('h',1)
             final = thing_stackpush[:index] + "\\" + "x00" + "\\" + "x00" + thing_stackpush[index:]
-            # some how it is impossible to print a single backslash with the interactive interpreter
             return(final)
     except:
         print("Uh oh, something bad happened in stackpush_nullterm func.")
