@@ -121,7 +121,7 @@ def assemble_output(clean_str,mut_type,mutated_str):
     # If you're feeling spunky maybe do a couple of versions, nocase ascii wide, xor, base64 base64 wide and so forth.
     if "\\x00" in mutated_str:
         print("\t$" + clean_str + mut_type + " = \"" + mutated_str + "\"")
-    elif "_hex_" in mut_type:
+    elif "_hex_" in mut_type and not "_hex_enc_str" in mut_type:
         print("\t$" + clean_str + mut_type + " = {" + mutated_str + "}")
     else: 
         #replace " with \"
@@ -147,14 +147,10 @@ def main_active(args = sys.argv[1:]):
     clean_str = re.sub('\W+','',args.str.strip())
     in_string = args.str
     mutation = args.mut
-        # was there some mutations?
     if args.str:
-            # if args.forcecase:
-            #    caseflag = True
             clean_str = re.sub('\W+','',args.str.strip())
             in_string = args.str
             mutation = args.mut
-            # was there some mutations?
             if args.mut:
                 if mutation == "flipflop":
                     mut_type = "_flipflop"
@@ -203,7 +199,6 @@ def main_active(args = sys.argv[1:]):
                         assemble_output(clean_str,mut_type,mutated_str)
                 else:
                     print("\nSomething bad happend with mutation selection.\n")
-                    # print(make_type2_stack_string_hex_w_nullterm(in_string))
                 print("\n")
             else:
                 print("\nError in mutations selection.\n")

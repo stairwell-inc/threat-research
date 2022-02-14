@@ -4,12 +4,20 @@ Scripts and lists to help you brute force YARA friendly string mutations.
 
 - Reference Blog: https://stairwell.com/news/hunting-with-weak-signals/
 
+
+There are two scripts here, one to help you process files with string lists, and one to help you do one off strings in multiple mutation forms.
+
+- cerebro-file-basic.py
+- cerebro-string-basic.py
+
+
 ## Mutations
 
 - flipflop - Flipping every two bytes, encoding used in many malware families including Nobelium's FLIPFLOP
-- stackpush - Meterpreter-style x86 stack strings, where four byte chunks are PUSH'd to the stack
+- stackpush - Meterpreter-style x86 stack strings, where four byte chunks are PUSH'd to the stack. There are stackpushnull and stackpushdoublenull to create mutations where the string is single or double null terminated.
 - fallchill - Custom string encoding routine used by Lazarus (aka HIDDEN COBRA) in FALLCHILL malware [[ref tweet](https://twitter.com/stvemillertime/status/1485990404948381698)]
 - reverse - Simple reverse strings
+- hex - Simple "hexidecimal values in a string form.
 
 ## Lists
 
@@ -18,7 +26,7 @@ We compiled a couple of lists of Windows DLL and function names by cherry pickin
 
 We recommend evaluating these, breaking them into sensible buckets (such as by their associated utility), and experimenting to find out which sets work well in rules. Add additional ones, or other file or function names that may not be listed here. 
 
-## Usage Example
+## Cerebro File Usage Example
 
 Use the script take the list of newline separated strings and mutate those using the flipflop function and print them into YARA terms. You can jam these into YARA rules, or expand the script to print them out in different ways or forms that are most easily useful for you. Have fun fiddling!
 
@@ -57,3 +65,17 @@ steve@CFO-MBP % python cerebro-file-basic.py --mutation flipflop --file common_w
 ```
 
 
+## Cerebro String Usage Example
+
+```
+
+CTO-MBP\steve >> python3 cerebro-string-basic.py -s netapi32.dll -m all
+
+        $netapi32dll_flipflop = "enatip23d.ll" nocase
+        $netapi32dll_reverse = "lld.23ipaten" nocase
+        $netapi32dll_hex_enc_str = "6e657461706933322e646c6c" nocase
+        $netapi32dll_fallchill = "mvgakr32.woo" nocase
+        $netapi32dll_stackpush = "h.dllhpi32hneta" nocase
+        $netapi32dll_stackpushnull = "h.dll\x00hpi32hneta"
+        $netapi32dll_stackpushdoublenull = "h.dll\x00\x00hpi32hneta"
+```
