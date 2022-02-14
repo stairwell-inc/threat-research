@@ -17,7 +17,7 @@ There are two scripts here, one to help you process files with string lists, and
 - stackpush - Meterpreter-style x86 stack strings, where four byte chunks are PUSH'd to the stack. There are stackpushnull and stackpushdoublenull to create mutations where the string is single or double null terminated.
 - fallchill - Custom string encoding routine used by Lazarus (aka HIDDEN COBRA) in FALLCHILL malware [[ref tweet](https://twitter.com/stvemillertime/status/1485990404948381698)]
 - reverse - Simple reverse strings
-- hex - Simple "hexidecimal values in a string form.
+- hex - Simple hexidecimal values in a string form.
 
 ## Lists
 
