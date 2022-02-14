@@ -50,6 +50,17 @@ def make_reverse_strings(thing):
     except:
         print("Uh oh, something bad happened in reverse func.")
 
+def make_hex_encoded_strings(thing):
+    # Hex encoding courtesy of @greglesnewich
+    try:
+        if isinstance(thing,str):
+            s = thing.encode('utf-8')
+            t = ""
+            thing_hex = t.join(s.hex())
+            return(thing_hex)
+    except:       
+        print("Uh oh, something bad happened in hex encoding func.")
+
 def make_fallchill_strings(thing):
     # Lifted from https://lifars.com/wp-content/uploads/2021/09/Lazarus.pdf
     try:
@@ -74,7 +85,7 @@ def assemble_output(clean_str,mut_type,mutated_str):
     # Use this function to change how you prefer things to be formatted in the output. 
     # If you're feeling spunky maybe do a couple of versions, nocase ascii wide, xor, base64 base64 wide and so forth.
     hextype = "hex"
-    if hextype in mut_type:
+    if hextype in mut_type and not "_hex_enc_str" in mut_type:
         print("\t$" + clean_str + mut_type + " = {" + mutated_str + "}")
     else: 
         #replace " with \"
@@ -92,7 +103,7 @@ def main_active(args = sys.argv[1:]):
     group.add_argument('-f','--file', type=argparse.FileType('r'), help='Single file to read.')
    
     #Mutation selection choices.
-    parser.add_argument('-m','--mut','--mutation', choices=['flipflop','stackpush','reverse','fallchill'], type=str, required=True)
+    parser.add_argument('-m','--mut','--mutation', choices=['flipflop','stackpush','reverse','fallchill','hex'], type=str, required=True)
 
     args = parser.parse_args(args)
 
@@ -133,6 +144,15 @@ def main_active(args = sys.argv[1:]):
                 for line in args.file:
                     in_string = line.strip()
                     mutated_str = make_fallchill_strings(in_string)
+                    clean_str = re.sub('\W+','',line.strip())
+                    assemble_output(clean_str,mut_type,mutated_str)
+                    count +=1
+            elif mutation == "hex":
+                mut_type = "_hex_enc_str"
+                count = 0
+                for line in args.file:
+                    in_string = line.strip()
+                    mutated_str = make_hex_encoded_strings(in_string)
                     clean_str = re.sub('\W+','',line.strip())
                     assemble_output(clean_str,mut_type,mutated_str)
                     count +=1
