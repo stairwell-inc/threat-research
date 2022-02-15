@@ -292,7 +292,7 @@ def main_active(args = sys.argv[1:]):
                     mutated_str = make_hex_encoded_strings(in_string)
                     assemble_output(clean_str,mut_type,mutated_str)
                 elif mutation == "frenchstack":
-                    generate(in_string)
+                    generate(in_string) #thank you @notareverser!
                 elif mutation == "all": #everything but frenchstack
                     funcs = [
                             make_flipflop_strings(in_string),
