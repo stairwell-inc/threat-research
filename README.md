@@ -4,4 +4,7 @@
 [![Twitter](https://badgen.net/badge/icon/twitter?icon=twitter&label)](https://twitter.com/InsideStairwell)
 
 
-Repository of tools, YARA rules, and code-snippets from Stairwell's research team.
+
+Repository of tools, YARA rules, and code-snippets from [Stairwell's research team](https://stairwell.com/resources/?_resource_types=threat-research).
+
+
